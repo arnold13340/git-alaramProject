@@ -1,0 +1,118 @@
+
+body{
+    background-color: #002940;
+    font-family: roboto;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock-container{
+    height: auto;
+    width: 600px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+.live-time-container{
+    height: 135px;
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.live-time{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.input-container{
+    width: 400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 30px;
+    
+}
+
+.hour{
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.minute{
+    height: 40px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 20px;
+   
+}
+
+.select{
+    height: 45px;
+    width: 100px;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.button{
+    height: 40px;
+    width: 400px;
+    background-color:#007205;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 20px;
+}
+
+.append-container{
+    margin-top: 20px;
+    height: auto;
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: center;
+   
+}
+
+.u-list{
+    background-color: #D9D9D9;
+    height: 50px;
+    width: 300px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.delete-button{
+    height: 30px;
+    width: 75px;
+    border: none;
+    border-radius: 3px;
+    background-color: #C30E2E;
+    color: white;
+}
+
+.list{
+    list-style: none;
+   
+}
