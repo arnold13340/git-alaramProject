@@ -35,6 +35,11 @@ minute.classList.add("minute");
 minute.type = "number";
 inputContainer.appendChild(minute);
 
+let second = document.createElement('input');
+second.classList.add("second");
+second.type = "number";
+inputContainer.appendChild(second);
+
 //creating the select Input appending to the input container
 let select = document.createElement('select');
 select.classList.add("select")
@@ -62,13 +67,15 @@ clockContainer.appendChild(buttonElement);
 let createAndAppendAlarm = (event) => {
     event.preventDefault();
 
-    const selectedHour = parseInt(hour.value, 10);
-    const selectedMinute = parseInt(minute.value, 10);
+    const selectedHour = parseInt(hour.value);
+    const selectedMinute = parseInt(minute.value);
+    const selectedSecond=parseInt(second.value);
     const selectedPeriod = select.value;
 
-    if (selectedHour >= 1 && selectedHour <= 12 && selectedMinute >= 0 && selectedMinute <= 59) {
+    if (selectedHour >= 1 && selectedHour <= 12 && selectedMinute >= 0 && selectedMinute <= 59 && selectedSecond >=0 && selectedSecond <=59) {
         const formattedHour = selectedHour < 10 ? `0${selectedHour}` : selectedHour;
         const formattedMinute = selectedMinute < 10 ? `0${selectedMinute}` : selectedMinute;
+        const formattedSecond=selectedSecond < 10 ? `0${selectedSecond}` : selectedSecond;
 
         let appendContainer = document.createElement("div");
         appendContainer.classList.add("append-container");
@@ -80,8 +87,8 @@ let createAndAppendAlarm = (event) => {
 
         let list = document.createElement("li");
         list.classList.add("list");
-        list.textContent = `${formattedHour}:${formattedMinute} ${selectedPeriod}`;
-        list.setAttribute("data-alarm-value", `${formattedHour}:${formattedMinute} ${selectedPeriod}`)
+        list.textContent = `${formattedHour}:${formattedMinute}:${formattedSecond} ${selectedPeriod}`;
+        list.setAttribute("data-alarm-value", `${formattedHour}:${formattedMinute}:${formattedSecond} ${selectedPeriod}`)
         uList.appendChild(list);
 
         let deleteButton = document.createElement("button");
@@ -91,6 +98,7 @@ let createAndAppendAlarm = (event) => {
 
         hour.value = "";
         minute.value = "";
+        second.value="";
     }
 }
 
@@ -107,7 +115,7 @@ let checkAndDisplayAlarmMatch = () => {
             // Display an alert when liveTime matches alarmValue
             window.alert("Alarm!");
         }
-
+            console.log(liveTime.textContent.trim() === alarmValue.trim())
     });
 }
 
@@ -116,6 +124,7 @@ let updateClock = () => {
     const date = new Date();
     let hours = date.getHours();
     let minutes = date.getMinutes();
+    let seconds=date.getSeconds();
     let period = hours >= 12 ? "PM" : "AM";
 
     if (hours > 12) {
@@ -126,7 +135,7 @@ let updateClock = () => {
         hours = 12;
     }
 
-    const timeString = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes} ${period}`;
+    const timeString = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}:${seconds < 10 ? '0' : ''}${seconds} ${period}`;
     liveTime.textContent = timeString;
 
     checkAndDisplayAlarmMatch();

@@ -49,14 +49,22 @@ body{
 
 .hour{
     height: 40px;
-    width: 100px;
+    width: 75px;
     border-radius: 5px;
     font-size: 20px;
 }
 
 .minute{
     height: 40px;
-    width: 100px;
+    width: 75px;
+    border-radius: 5px;
+    font-size: 20px;
+   
+}
+
+.second{
+    height: 40px;
+    width: 75px;
     border-radius: 5px;
     font-size: 20px;
    
@@ -64,7 +72,7 @@ body{
 
 .select{
     height: 45px;
-    width: 100px;
+    width: 75px;
     border-radius: 5px;
     padding-left: 15px;
     font-size: 20px;
