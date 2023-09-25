@@ -12,7 +12,7 @@ let liveTimeContainer = document.createElement("div")
 liveTimeContainer.classList.add("live-time-container");
 clockContainer.appendChild(liveTimeContainer);
 
-//creating the live time para and appendind to the live time container
+//creating the live time para and appending to the live time container
 let liveTime = document.createElement("p");
 liveTime.classList.add("live-time");
 liveTime.textContent = "";
@@ -25,17 +25,20 @@ clockContainer.appendChild(inputContainer);
 
 //creating the hour number input and appending to the inputContainer
 let hour = document.createElement('input');
+hour.placeholder='HH'
 hour.classList.add("hour")
 hour.type = "number";
 inputContainer.appendChild(hour);
 
 //creating the minute number input and appending to the inputContainer
 let minute = document.createElement('input');
+minute.placeholder="MM"
 minute.classList.add("minute");
 minute.type = "number";
 inputContainer.appendChild(minute);
 
 let second = document.createElement('input');
+second.placeholder="SS"
 second.classList.add("second");
 second.type = "number";
 inputContainer.appendChild(second);
@@ -62,6 +65,18 @@ let buttonElement = document.createElement("button");
 buttonElement.classList.add("button");
 buttonElement.textContent = "Set Alarm"
 clockContainer.appendChild(buttonElement);
+
+let stopbuttonElement = document.createElement("button");
+stopbuttonElement.classList.add("stop-button");
+stopbuttonElement.textContent = "Stop Alarm"
+clockContainer.appendChild(stopbuttonElement);
+
+
+stopbuttonElement.addEventListener('click',()=>{
+    audioPlayer.pause();
+    audioPlayer.currentTime = 0;
+
+})
 
 //function for create and appending the alarm list
 let createAndAppendAlarm = (event) => {
@@ -105,7 +120,11 @@ let createAndAppendAlarm = (event) => {
 //creating evenet listener for the button
 buttonElement.addEventListener('click', createAndAppendAlarm);
 
-//logic for the alert window
+const audioPlayer = new Audio();
+audioPlayer.src = "http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.mp3";
+
+
+//logic for the music 
 let checkAndDisplayAlarmMatch = () => {
     const alarms = document.querySelectorAll(".list");
     alarms.forEach((alarm) => {
@@ -113,7 +132,9 @@ let checkAndDisplayAlarmMatch = () => {
         if (liveTime.textContent.trim() === alarmValue.trim()) {
 
             // Display an alert when liveTime matches alarmValue
-            window.alert("Alarm!");
+            audioPlayer.play();
+          
+
         }
             console.log(liveTime.textContent.trim() === alarmValue.trim())
     });
@@ -144,18 +165,19 @@ let updateClock = () => {
 updateClock();
 setInterval(updateClock, 1000);
 
-// Function to remove the container when the delete button is clicked
-const removeContainer = (event) => {
+// Function to remove the alarm container when the delete button is clicked
+const removeAlarmContainer = (event) => {
     const containerToRemove = event.target.closest(".append-container");
     if (containerToRemove) {
         containerToRemove.remove();
+        audioPlayer.pause();
     }
 }
 
 // Event delegation: Add a single click event listener to the clockContainer
 clockContainer.addEventListener('click', (event) => {
     if (event.target.classList.contains('delete-button')) {
-        removeContainer(event);
+        removeAlarmContainer(event);
     }
 });
 
